@@ -13,6 +13,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using GroupHomework.Models;
+using GroupHomework.Services;
+using Windows.UI.Popups;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace GroupHomework.Pages
@@ -49,11 +51,10 @@ namespace GroupHomework.Pages
             Food food = Products.SelectedItem as Food;
             MainPage._mainFrame.Navigate(typeof(FoodPage), food);
         }
-
+       
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Food food = Products.SelectedItem as Food;
-            MainPage._mainFrame.Navigate(typeof(FoodPage), food);
+           
         }
     }
 }

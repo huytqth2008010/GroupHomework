@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace GroupHomework.Models
 {
-    class Homes
+    class Home
     {
         public string Title1 { get; set; }
 

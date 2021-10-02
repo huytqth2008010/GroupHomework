@@ -7,6 +7,11 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace GroupHomework.Models
 {
+    public class RootHome
+    {
+        public string message { get; set; }
+        public List<Food> data { get; set; }
+    }
     public class Category
     {
         public int id { get; set; }

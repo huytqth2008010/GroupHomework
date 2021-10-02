@@ -26,18 +26,39 @@ namespace GroupHomework.Pages
         public Home()
         {
             this.InitializeComponent();
-            GV.Items.Add(new Homes()
-            {
-                Title1 = "Only",
-                Price = "$10",
-                Name = "Cheeseburger",
-                Title2 = "With Onions and tamato and ketchup",
-                Title3 = "Lorem ipsum doler sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
-                Img = new BitmapImage(new Uri("https://media-cdn.tripadvisor.com/media/photo-s/11/4f/df/79/cheese-burger.jpg"))
-            });
+            //GV.Items.Add(new Models.Home()
+            //{
+            //    Title1 = "Only",
+            //    Price = "$10",
+            //    Name = "Cheeseburger",
+            //    Title2 = "With Onions and tamato and ketchup",
+            //    Title3 = "Lorem ipsum doler sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+            //    Img = new BitmapImage(new Uri("https://media-cdn.tripadvisor.com/media/photo-s/11/4f/df/79/cheese-burger.jpg"))
+            //});
+        }
+        private void Gv_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            RenderData();
+
         }
 
-        private void Button_Click_Order(object sender, RoutedEventArgs e)
+        private async void RenderData()
+        {
+            Services.MenuService service = new Services.MenuService();
+            var categoryDetail = await service.GetHome();
+            if (categoryDetail != null)
+            {
+                GV.ItemsSource = categoryDetail.data;
+            }
+        }
+        private void GridViewItem_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Food food = GV.SelectedItem as Food;
+            MainPage._mainFrame.Navigate(typeof(FoodPage), food);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
 
         }

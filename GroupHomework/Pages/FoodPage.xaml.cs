@@ -16,6 +16,7 @@ using GroupHomework.Models;
 using GroupHomework.Adapters;
 using SQLitePCL;
 using GroupHomework.Services;
+using Windows.UI.Popups;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace GroupHomework.Pages
@@ -44,7 +45,7 @@ namespace GroupHomework.Pages
 
         }
 
-        private void AddToCart(object sender, RoutedEventArgs e)
+        private async void AddToCart(object sender, RoutedEventArgs e)
         {
             CartService cart = new CartService();
             CartItem item = new CartItem()
@@ -55,11 +56,19 @@ namespace GroupHomework.Pages
                 Price = _food.price,
                 Qty = 1,
             };
-            cart.AddToCart(item);
+            if(cart.AddToCart(item))
+            {
+                var dialog = new MessageDialog("Add to cart error !");
+                await dialog.ShowAsync();
+            }
+            else
+            {
+                var dialog = new MessageDialog("Add to cart successfully !");
+                await dialog.ShowAsync();
+            }
+           
             //var list = cart.GetCart();
-
+            
         }
-
-    
     }
 }

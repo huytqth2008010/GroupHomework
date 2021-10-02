@@ -14,6 +14,19 @@ namespace GroupHomework.Services
         // lay data tu api va tra ve 1 object Categories
         // task 1 -- chua xong (delay, duration...) -> để đó chờ
         // task 2 --> làm task 2 kể cả task 1 chưa xong
+        public async Task<Models.RootHome> GetHome()
+        {
+            Adapters.FoodGroup foodGroup = Adapters.FoodGroup.GetInstance();
+            HttpClient hc = new HttpClient();// shipper -> lo việc kết nối api để lấy dữ liệu
+            var rs = await hc.GetAsync(foodGroup.ApiHome);// get_file_content -> thao tác trả hàng của shipper
+            if (rs.StatusCode == HttpStatusCode.OK)
+            {
+                var stringContent = await rs.Content.ReadAsStringAsync();// chuyển thành string json
+                Models.RootHome root = JsonConvert.DeserializeObject<Models.RootHome>(stringContent);
+                return root;
+            }
+            return null;
+        }
         public async Task<Models.Categories> GetMenu()
         {
             Adapters.FoodGroup api = Adapters.FoodGroup.GetInstance();

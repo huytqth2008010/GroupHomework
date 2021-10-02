@@ -8,13 +8,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="#fff">
-
-    <Grid>
+    
+    <ScrollViewer Height="550">
+        <Grid>
         <TextBlock Text="" x:Name="Title" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0"/>
         <GridView x:Name="Products">
-            <GridView.ItemTemplate >
+                <GridView.ItemTemplate  >
                 <DataTemplate x:DataType="models:Food">
-                    <GridViewItem Margin="10" Tapped="GridViewItem_Tapped">
+                        <GridViewItem Margin="10"  Tapped="GridViewItem_Tapped">
                         <StackPanel Margin="45" Background="#E2E2E2" Padding="5,0,5,30" BorderBrush="#E2E2E2" BorderThickness="1" Width="250">
                         <TextBlock Text="{x:Bind name}" Height="60" Width="200" MaxLines="2" Foreground="Black" FontWeight="SemiBold" Margin="10 0 10 10" FontSize="24" TextWrapping="WrapWholeWords"/>
                         <StackPanel Background="#fff">
@@ -36,11 +37,12 @@
                                   MaxHeight="84"
                                />
                         <TextBlock Text="{x:Bind price}" FontSize="20" Foreground="Blue" Padding="10" FontWeight="Bold"/>
-                        <Button Content="Read More" Click="Button_Click" Background="#FBBC04" Margin="150,-30,0,0"/>
-                    </StackPanel>
+                         <Button Content="Read More"  Background="#FBBC04" Margin="150,-30,0,0"  Click="Button_Click"/>
+                     </StackPanel>
                     </GridViewItem>
-                </DataTemplate>
+                    </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
     </Grid>
+    </ScrollViewer>
 </Page>

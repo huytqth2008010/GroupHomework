@@ -46,8 +46,8 @@ namespace GroupHomework
 
         private void Menu_Loaded(object sender, RoutedEventArgs e)
         {
-            var item1 = new MenuItem() { Name = "Home", MenuPage = "home", Icon = "\uE80f" };
-            var item2 = new MenuItem() { Name = "Cart", MenuPage = "cart", Icon = "\uEb68" };
+            var item1 = new MenuItem() { Name = "Home", MenuPage = "home", Icon = "/Images/Button1.png" };
+            var item2 = new MenuItem() { Name = "Cart", MenuPage = "cart", Icon = "/Images/Button2.png" };
             // Gia su co 1 danh sach category
             // new MenuItem() { Name = "Ten cua category", MenuPage = "category", Icon = "\uE946" };
             Menu.Items.Add(item1);
@@ -75,7 +75,7 @@ namespace GroupHomework
             {
                 foreach (Models.Category c in categories.data)
                 {
-                    Menu.Items.Add(new MenuItem() { Name = c.name, MenuPage = "category", Icon = "\ue71d", Category = c });
+                    Menu.Items.Add(new MenuItem() { Name = c.name, MenuPage = "category", Icon = c.icon, Category = c });
                 }
             }
         }

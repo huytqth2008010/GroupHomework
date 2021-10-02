@@ -12,7 +12,10 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
+using GroupHomework.Models;
+using GroupHomework.Adapters;
+using SQLitePCL;
+using GroupHomework.Services;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace GroupHomework.Pages
@@ -22,9 +25,28 @@ namespace GroupHomework.Pages
     /// </summary>
     public sealed partial class Cart : Page
     {
+        private CartItem item;
+
         public Cart()
         {
             this.InitializeComponent();
+           
+        }
+        private void cartData_Loaded(object sender, RoutedEventArgs e)
+        {
+            var list = CallData();
+            cartData.ItemsSource = list;
+        }
+        private List<CartItem> CallData()
+        {
+            CartService card = new CartService();
+            var list = card.GetCart();
+            return list;
+        }
+        private void RemoveItem(object sender, RoutedEventArgs e)
+        {
+
+
         }
     }
 }

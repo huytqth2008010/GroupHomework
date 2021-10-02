@@ -125,8 +125,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\CartItem.cs" />
-    <Compile Include="Models\EatIns.cs" />
-    <Compile Include="Models\Homes.cs" />
+    <Compile Include="Models\Home.cs" />
     <Compile Include="Models\Menu.cs" />
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\ProductModel.cs" />
@@ -135,9 +134,6 @@
     </Compile>
     <Compile Include="Pages\CategoryPage.xaml.cs">
       <DependentUpon>CategoryPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Eat.xaml.cs">
-      <DependentUpon>Eat.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\FoodPage.xaml.cs">
       <DependentUpon>FoodPage.xaml</DependentUpon>
@@ -156,6 +152,8 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\button1.png" />
+    <Content Include="Images\button2.png" />
     <Content Include="Images\chim.png" />
     <Content Include="Images\chuong.png" />
     <Content Include="Images\facebook.png" />
@@ -188,10 +186,6 @@
     <Page Include="Pages\CategoryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Eat.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\FoodPage.xaml">
       <SubType>Designer</SubType>

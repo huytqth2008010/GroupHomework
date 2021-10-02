@@ -34,7 +34,7 @@ namespace GroupHomework.Services
                 var rs = statement.Step();
                 return rs == SQLiteResult.OK;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -51,11 +51,12 @@ namespace GroupHomework.Services
                 var rs = statement.Step();
                 return rs == SQLiteResult.OK;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
         }
+
 
         public List<CartItem> GetCart()
         {
@@ -78,7 +79,7 @@ namespace GroupHomework.Services
                     list.Add(item);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
 
             }
@@ -93,10 +94,14 @@ namespace GroupHomework.Services
                 string sql_txt = "delete from Cart where Id = ?";
                 var statement = connection.Prepare(sql_txt);
                 statement.Bind(1, item.Id);
+                statement.Bind(2, item.Name);
+                statement.Bind(3, item.ImageProduct);
+                statement.Bind(4, item.Price);
+                statement.Bind(5, item.Qty);
                 var rs = statement.Step();
                 return rs == SQLiteResult.OK;
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 return false;
             }
@@ -114,7 +119,7 @@ namespace GroupHomework.Services
                 var rs = statement.Step();
                 return rs == SQLiteResult.OK;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }

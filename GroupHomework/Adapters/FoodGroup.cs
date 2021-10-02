@@ -16,7 +16,10 @@ namespace GroupHomework.Adapters
         {
 
         }
-
+        public string ApiHome
+        {
+            get => String.Format(baseURL + "/api/today-special");
+        }
         public static FoodGroup GetInstance()
         {
             if (instance == null)

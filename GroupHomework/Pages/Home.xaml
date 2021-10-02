@@ -8,42 +8,40 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Grid Background="White">
-        <GridView  x:Name="GV">
-            <GridView.ItemTemplate>
-                <DataTemplate x:DataType="model:Homes" >
-                    <StackPanel BorderBrush="#E2E2E2">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Column="0" Width="500">
-                                <TextBlock Text="{x:Bind Title1}" FontSize="25" Foreground="#F8AD00" Margin="30,0,0,0"/>
-                                <TextBlock Text="{x:Bind Price}" FontSize="140" Foreground="#F8AD00" Margin="60,-30,0,0"/>
-                                <TextBlock Text="{x:Bind Name}" FontSize="25" Foreground="Black" FontWeight="ExtraBlack" Margin="60,0,0,0"/>
-                                <TextBlock Text="{x:Bind Title2}" FontSize="25" Foreground="Black" Margin="60,0,0,0"/>
-                                <TextBlock Text="{x:Bind Title3}" 
+    <ScrollViewer Height="550">
+        <Grid Background="White">
+            <GridView  x:Name="GV" Loaded="Gv_Loaded">
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Food">
+                        <GridViewItem Margin="10" Tapped="GridViewItem_Tapped">
+                            <StackPanel Margin="45" Background="#E2E2E2" Padding="5,0,5,30" BorderBrush="#E2E2E2" BorderThickness="1" Width="250">
+                                <TextBlock Text="{x:Bind name}" Height="60" Width="200" MaxLines="2" Foreground="Black" FontWeight="SemiBold" Margin="10 0 10 10" FontSize="24" TextWrapping="WrapWholeWords"/>
+                                <StackPanel Background="#fff">
+                                    <Image Width="250" Height="180"  VerticalAlignment="Top" >
+                                        <Image.Source>
+                                            <BitmapImage  UriSource="{x:Bind Img.UriSource}"/>
+                                        </Image.Source>
+                                    </Image>
+                                </StackPanel>
+                                <TextBlock Text="{x:Bind description}" 
                                    FontSize="16"
                                    Foreground="Black" 
                                    Padding="10" 
-                                  Margin="60,0,0,0"
+                                   Width="250"
                                   TextWrapping="Wrap" 
                                   TextTrimming="WordEllipsis" 
                                   LineStackingStrategy="BlockLineHeight"
+                                  LineHeight="28"
+                                  MaxHeight="84"
                                />
-                                <Button Content="Order Now" Click="Button_Click_Order" Background="#FBBC04" Width="420" Margin="60,0,0,0" RequestedTheme="Light"/>
+                                <TextBlock Text="{x:Bind price}" FontSize="20" Foreground="Blue" Padding="10" FontWeight="Bold"/>
+                                <Button Content="Read More"  Background="#FBBC04" Margin="150,-30,0,0"/>
                             </StackPanel>
-                            <Image Width="500" Grid.Column="1" >
-                                <Image.Source>
-                                    <BitmapImage  UriSource="{x:Bind Img.UriSource}" />
-                                </Image.Source>
-                            </Image>
-                        </Grid>
-                    </StackPanel>
-                </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>
-    </Grid>
+                        </GridViewItem>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+        </Grid>
+
+    </ScrollViewer>
 </Page>

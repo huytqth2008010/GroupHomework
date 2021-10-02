@@ -14,5 +14,7 @@ namespace GroupHomework.Models
 
         public int Price { get; set; }
         public int Qty { get; set; }
+
+     
     }
 }

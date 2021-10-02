@@ -9,20 +9,24 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
 
-    <SplitView x:Name="SP" OpenPaneLength="180" DisplayMode="CompactInline" IsPaneOpen="True">
+    <SplitView x:Name="SP" OpenPaneLength="200"  DisplayMode="CompactInline" IsPaneOpen="True">
         <SplitView.Pane>
             <RelativePanel>
                 <FontIcon Tapped="FontIcon_Tapped" x:Name="Click" FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;"  Margin="12,20,0,0"/>
-                <ListView Loaded="Menu_Loaded" x:Name="Menu" Margin="0,200,0,0" RelativePanel.Below="Click">
+                <ListView Loaded="Menu_Loaded" x:Name="Menu" Margin="0,200,0,0" RelativePanel.Below="Click" Width="200">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="models:MenuItem">
                             <ListViewItem Tapped="ListViewItem_Tapped">
                                 <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="2*"/>
                                     </Grid.ColumnDefinitions>
-                                    <FontIcon Grid.Column="0" FontFamily="Segoe MDL2 Assets" Glyph="{x:Bind Icon}"  Margin="0,8,0,0"/>
+                                    <!--<FontIcon Grid.Column="0" FontFamily="Segoe MDL2 Assets" Glyph="{x:Bind Icon}"  Margin="0,8,0,0"/>-->
+                                    <Image Grid.Column="0" Margin="-3 0" Source="{x:Bind Icon}" Width="28"/>
                                     <TextBlock Grid.Column="1" Text="{x:Bind Name}" Margin="20,8,0,0"/>
                                 </Grid>
                             </ListViewItem>
