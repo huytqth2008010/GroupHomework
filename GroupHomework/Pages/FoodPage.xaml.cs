@@ -50,11 +50,11 @@ namespace GroupHomework.Pages
             CartService cart = new CartService();
             CartItem item = new CartItem()
             {
-                Id = _food.id,
-                Name = _food.name,
-                ImageProduct = _food.image,
-                Price = _food.price,
-                Qty = 1,
+                id = _food.id,
+                name = _food.name,
+                image = _food.image,
+                price = _food.price,
+                qty = 1,
             };
             if(cart.AddToCart(item))
             {

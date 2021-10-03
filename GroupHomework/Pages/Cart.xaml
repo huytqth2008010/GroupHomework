@@ -24,54 +24,126 @@
             </Canvas>
             <ScrollViewer Height="350">
                 <Grid>
-                    <ListView x:Name="cartData" Loaded="cartData_Loaded">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="model:CartItem">
-                        <ListViewItem>
-                                <Grid Margin="0 0 0 10" BorderBrush="#ddd" Padding="0 15">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="auto"/>
-                                    </Grid.RowDefinitions>
-                               
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*" />
-                                        <ColumnDefinition Width="3*" />
-                                        <ColumnDefinition Width="1*" />
-                                        <ColumnDefinition Width="1*" />
-                                        <ColumnDefinition Width="1*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Ellipse Grid.Column="0" Width="80" Height="80">
-                                        <Ellipse.Fill>
-                                            <ImageBrush ImageSource="{x:Bind ImageProduct}" />
-                                        </Ellipse.Fill>
-                                    </Ellipse>
-                                    <TextBlock Margin="10 0 45 0" Width="400" VerticalAlignment="Center" Grid.Column="1" Text="{x:Bind Name}" FontWeight="SemiBold" FontSize="16" Foreground="#333" />
-                                    <RelativePanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120">
-                                            <Button RequestedTheme="Light" Background="White" Padding="5 -3 0 5" FontSize="20" Foreground="#333" Width="30">-</Button>
-                                        <TextBox Margin="25 0 0 0" x:Name="CartProductAmount3" Padding="0 5 0 0" CornerRadius="5" TextAlignment="Center" Foreground="#333" Background="Transparent"  BorderThickness="1" BorderBrush="#ddd" Text="{x:Bind Qty}" />
-                                            <Button RequestedTheme="Light" Background="White" Padding="0 0 0 5" RelativePanel.RightOf="CartProductAmount3"  FontSize="18" Foreground="#333" Width="20">+</Button>
-                                    </RelativePanel>
-                                    <TextBlock Grid.Column="3" Text="{x:Bind Price}" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center"  Foreground="Black" Padding="40,0"/>
-                                        <Button Click="RemoveItem" Grid.Column="4" Foreground="#333" RequestedTheme="Light" Background="White">
-                                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74d;"/>
-                                    </Button>
-                            </Grid>
-                        </ListViewItem>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                    <ListView x:Name="cartData" Loaded="cartData_Loaded" Margin="0,0,0,-1">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="model:CartItem">
+                                <ListViewItem>
+                                    <Grid Margin="0 0 0 10" BorderBrush="#ddd" Padding="0 15">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="3*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="1*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Ellipse Grid.Column="0" Width="80" Height="80">
+                                            <Ellipse.Fill>
+                                                <ImageBrush ImageSource="{x:Bind image}" />
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                        <TextBlock Text="{x:Bind name}" 
+                                                   Margin="10 0 45 0" 
+                                                   Width="400"
+                                                   VerticalAlignment="Center"
+                                                   Grid.Column="1"
+                                                   FontWeight="SemiBold"
+                                                   FontSize="16" 
+                                                   Foreground="#333" />
+                                        <RelativePanel Grid.Column="2">
+                                            <Button x:Name="ReduceQuantityButton" 
+                                                    Tag="{x:Bind id}"
+                                                    Click="ReduceQuantityButton_Click"
+                                                    RelativePanel.LeftOf="QuantityTextBox"
+                                                    RelativePanel.AlignVerticalCenterWithPanel="True" 
+                                                    Background="White" 
+                                                    Padding="-20 -3 0 0" 
+                                                    FontSize="20" 
+                                                    Foreground="#333"
+                                                    Width="30">-</Button>
+                                            <TextBox x:Name="QuantityTextBox" Text="{x:Bind qty}" 
+                                                    Tag="{x:Bind id}" 
+                                                    BeforeTextChanging="QuantityTextBox_BeforeTextChanging" 
+                                                    TextChanged="QuantityTextBox_TextChanged"
+                                                    RelativePanel.AlignVerticalCenterWithPanel="True" 
+                                                    RelativePanel.AlignHorizontalCenterWithPanel="True"
+                                                    Padding="0 5 0 0" 
+                                                    CornerRadius="5" 
+                                                    TextAlignment="Center" 
+                                                    Foreground="#333" 
+                                                    Background="Transparent" 
+                                                    BorderThickness="1"
+                                                    BorderBrush="#ddd"></TextBox>
+                                            <Button x:Name="IncreaseQuantityButton"
+                                                    Tag="{x:Bind id}" 
+                                                    Click="IncreaseQuantityButton_Click"
+                                                    RelativePanel.RightOf="QuantityTextBox"
+                                                    RelativePanel.AlignVerticalCenterWithPanel="True"
+                                                    Background="White"
+                                                    Padding="0 0 0 5"
+                                                    FontSize="18"
+                                                    Foreground="#333"
+                                                    Width="20">+</Button>
+                                        </RelativePanel>
+                                        <TextBlock Grid.Column="3" 
+                                                   Text="{x:Bind price}" 
+                                                   FontSize="16"
+                                                   FontWeight="SemiBold" 
+                                                   VerticalAlignment="Center" 
+                                                   HorizontalAlignment="Center"  
+                                                   Foreground="Black" 
+                                                   Padding="40,0"/>
+                                        <Button Tag="{x:Bind id}" 
+                                                x:Name="DeleteButton"
+                                                Click="RemoveItem" 
+                                                Grid.Column="4" 
+                                                Foreground="#333" 
+                                                RequestedTheme="Light" 
+                                                Background="White"
+                                                RelativePanel.AlignVerticalCenterWithPanel="True" 
+                                                RelativePanel.AlignHorizontalCenterWithPanel="True">
+                                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74d;"/>
+                                        </Button>
+                                    </Grid>
+                                </ListViewItem>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </Grid>
             </ScrollViewer>
-            
-            
-            <TextBlock Text="Total: " HorizontalAlignment="Right" Margin="0 0 100 0" FontSize="16" FontWeight="SemiBold" />
         </StackPanel>
-        <StackPanel Background="#b30631" Margin="10 0 0 0"  Grid.Column="1">
+        <RelativePanel Margin="0,427,0,-27" Height="50" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" x:Name="Footer">
+            <Button Background="#F4AE07" Foreground="White" RequestedTheme="Light" >
+                <StackPanel Orientation="Horizontal">
+                    <FontIcon Grid.Column="0" FontFamily="Segoe MDL2 Assets" Glyph="&#xf0b0;"  Margin="0,0,0,0" Foreground="White"/>
+                    <TextBlock FontSize="16" Width="140" Margin="15,0,0,0">
+                        <Run Text="Continue Shopping"/>
+                    </TextBlock>
+                </StackPanel>
+            </Button>
+            <StackPanel RelativePanel.LeftOf="a" RelativePanel.AlignVerticalCenterWithPanel="True" Orientation="Horizontal" Height="39" Margin="0,-10,20,0">
+                <TextBlock RelativePanel.LeftOf="TotalAmount" FontSize="20" LineHeight="36" Margin="0,5,5,0" Height="31">Total:</TextBlock>
+                <TextBlock x:Name="TotalAmount"  RelativePanel.LeftOf="Currency"  FontSize="22" FontWeight="Bold" LineHeight="36" Margin="0,5,5,0"></TextBlock>
+                <TextBlock x:Name="Currency" RelativePanel.LeftOf="a"  FontSize="22" FontWeight="Bold"  Margin="0,5,5,0">VND</TextBlock>
+            </StackPanel>
+            <Button Name="a" Foreground="White" RelativePanel.AlignRightWithPanel="True" Background="White" Height="35" >
+                <StackPanel Orientation="Horizontal" >
+                </StackPanel>
+            </Button>
+        </RelativePanel>
+        <StackPanel Background="#b30631" Margin="45,0,0,-11"  Grid.Column="1">
             <TextBlock Foreground="#fff" FontSize="25" Margin="0 20 10 30"  HorizontalAlignment="Center" Text="Cart Detail"  FontWeight="Bold" />
             <TextBox Text="" PlaceholderText="Name" BorderThickness="0 0 0 1"  CornerRadius="5" Padding="5" TextWrapping="Wrap" Margin="10 10"/>
             <TextBox Text="" PlaceholderText="Tel" BorderThickness="0 0 0 1" CornerRadius="5" Padding="5" TextWrapping="Wrap" Margin="10 10"/>
             <TextBox Text="" PlaceholderText="Address" Height="100" BorderThickness="0 0 0 1" CornerRadius="5" Padding="5" TextWrapping="Wrap" Margin="10 10"/>
-            <Button Content="Order Now" HorizontalAlignment="Center" Margin="10" Background="#C87E92" CornerRadius="5" />
+            <Button  Name="CheckoutButton" Click="CheckoutButton_Click" Content="Order Now" HorizontalAlignment="Center" Margin="10" Background="#C87E92" CornerRadius="5" />
         </StackPanel>
+      
+
     </Grid>
+
 </Page>
+    

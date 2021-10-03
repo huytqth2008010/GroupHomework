@@ -19,7 +19,7 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" Width="500">
                     <TextBlock Text="Only" FontSize="25" Foreground="#F8AD00" Margin="30,0,0,0"/>
-                    <TextBlock x:Name="Price" FontSize="120" Foreground="#F8AD00" Margin="60,-30,0,0"/>
+                    <TextBlock x:Name="Price" FontSize="110" Foreground="#F8AD00" Margin="60,-30,0,0"/>
                     <TextBlock x:Name="Name" FontSize="25" Foreground="Black" FontWeight="ExtraBlack" Margin="60,0,0,0"/>
                     <TextBlock Text="With Onions and tamato and ketchup" FontSize="25" Foreground="Black" Margin="60,0,0,0"/>
                     <TextBlock  x:Name="Description" 
@@ -32,7 +32,7 @@
                         LineStackingStrategy="BlockLineHeight"
                                 Text="Lorem ipsum doler sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
                     />
-                    <Button Content="Order Now" Click="AddToCart" Background="#FBBC04" Width="420" Margin="60,0,0,0" RequestedTheme="Light"/>
+                    <Button Content="Add To Cart" Click="AddToCart" Background="#FBBC04" Width="420" Margin="60,0,0,0" RequestedTheme="Light"/>
                 </StackPanel>
                 <Image Width="500" Grid.Column="1" >
                     <Image.Source>

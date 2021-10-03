@@ -8,7 +8,7 @@ namespace GroupHomework.Adapters
 {
     class FoodGroup
     {
-        private readonly string baseURL = "http://foodgroup.herokuapp.com";
+        private readonly string baseURL = "http://foodgroup.herokuapp.com/api";
         // singleton pattern
         private static FoodGroup instance;
 
@@ -18,7 +18,7 @@ namespace GroupHomework.Adapters
         }
         public string ApiHome
         {
-            get => String.Format(baseURL + "/api/today-special");
+            get => String.Format(baseURL + "/today-special");
         }
         public static FoodGroup GetInstance()
         {
@@ -32,12 +32,21 @@ namespace GroupHomework.Adapters
         // api list categories
         public string ApiMenu
         {
-            get => String.Format(baseURL + "/api/menu");
+            get => String.Format(baseURL + "/menu");
         }
 
         public string CategoryDetail(string id)
         {
-            return String.Format(baseURL + "/api/category/" + id);
+            return String.Format(baseURL + "/category/" + id);
         }
+        public string ApiCreateOrder
+        {
+            get => String.Format(baseURL + "/create-order");
+        }
+        public string OrderDetail(int id)
+        {
+            return String.Format(baseURL + "/order/" + id);
+        }
+       
     }
 }

@@ -25,8 +25,7 @@ namespace GroupHomework.Pages
     /// </summary>
     public sealed partial class Cart : Page
     {
-        private CartItem item;
-
+        CartService service;
         public Cart()
         {
             this.InitializeComponent();
@@ -34,19 +33,75 @@ namespace GroupHomework.Pages
         }
         private void cartData_Loaded(object sender, RoutedEventArgs e)
         {
-            var list = CallData();
-            cartData.ItemsSource = list;
+            RenderCart();
         }
-        private List<CartItem> CallData()
+        //private List<CartItem> CallData()
+        //{
+        //    CartService card = new CartService();
+        //    var list = card.GetCart();
+        //    return list;
+        //}
+        private void ReduceQuantityButton_Click(object sender, RoutedEventArgs e)
         {
-            CartService card = new CartService();
-            var list = card.GetCart();
-            return list;
+            int id = (int)((Button)sender).Tag;
+            int qty = service.ItemCount(id);
+            service.UpdateItem(id, qty - 1);
+            RenderCart();
+        }
+
+        private void QuantityTextBox_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
+        {
+            args.Cancel = args.NewText.Any(c => !char.IsDigit(c)) || args.NewText.Length == 0;
+
+        }
+        private void QuantityTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int id = (int)((TextBox)sender).Tag;
+            service.UpdateItem(id, Int32.Parse(((TextBox)sender).Text));
+            RenderCart();
+        }
+
+        private void IncreaseQuantityButton_Click(object sender, RoutedEventArgs e)
+        {
+            int id = (int)((Button)sender).Tag;
+            int qty = service.ItemCount(id);
+            service.UpdateItem(id, qty + 1);
+            RenderCart();
         }
         private void RemoveItem(object sender, RoutedEventArgs e)
         {
-
-
+            int id = (int)((Button)sender).Tag;
+            service.RemoveItem(id);
+            RenderCart();
         }
+
+        private void RenderCart()
+        {
+            service = new CartService();
+
+            List<CartItem> cart = service.GetCart();
+            cartData.Items.Clear();
+            if (cart != null)
+            {
+                foreach (CartItem item in cart)
+                {
+                    cartData.Items.Add(item);
+                }
+            }
+
+            TotalAmount.Text = service.GetTotalAmount().ToString();
+
+            //var list = CallData();
+            //cartData.ItemsSource = list;
+            //TotalAmount.Text = service.GetTotalAmount().ToString();
+        }
+        private void CheckoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            OrderService orderService = new OrderService();
+            _ = orderService.CreateOrder();
+            service.ClearCart();
+            RenderCart();
+        }
+       
     }
 }

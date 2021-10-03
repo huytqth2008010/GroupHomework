@@ -36,9 +36,9 @@
                                   LineHeight="28"
                                   MaxHeight="84"
                                />
-                        <TextBlock Text="{x:Bind price}" FontSize="20" Foreground="Blue" Padding="10" FontWeight="Bold"/>
-                         <Button Content="Read More"  Background="#FBBC04" Margin="150,-30,0,0"  Click="Button_Click"/>
-                     </StackPanel>
+                                <TextBlock Text="{x:Bind price}" HorizontalAlignment="Center" FontSize="20" Foreground="Blue" Padding="10" FontWeight="Bold" Margin=" -55,0,0,0"/>
+                                <TextBlock Text="VND" HorizontalAlignment="Center" FontSize="20" Foreground="Blue" FontWeight="Bold" Margin=" 55,-37,0,0"/>
+                            </StackPanel>
                     </GridViewItem>
                     </DataTemplate>
             </GridView.ItemTemplate>

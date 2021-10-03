@@ -48,10 +48,12 @@ namespace GroupHomework
         {
             var item1 = new MenuItem() { Name = "Home", MenuPage = "home", Icon = "/Images/Button1.png" };
             var item2 = new MenuItem() { Name = "Cart", MenuPage = "cart", Icon = "/Images/Button2.png" };
+            var item3 = new MenuItem() { Name = "Order", MenuPage = "order", Icon = "/Images/Button2.png" };
             // Gia su co 1 danh sach category
             // new MenuItem() { Name = "Ten cua category", MenuPage = "category", Icon = "\uE946" };
             Menu.Items.Add(item1);
             Menu.Items.Add(item2);
+            Menu.Items.Add(item3);
             RenderCategoriesToMenu();
         }
 
@@ -62,6 +64,7 @@ namespace GroupHomework
             {
                 case "home": MainFrame.Navigate(typeof(Pages.Home), selectedItem); break; // Page
                 case "cart": MainFrame.Navigate(typeof(Pages.Cart)); break;
+                case "order": MainFrame.Navigate(typeof(Pages.AllOrdersPage)); break;
                 case "category": MainFrame.Navigate(typeof(Pages.CategoryPage), selectedItem.Category); break;
                     //case "category": MainFrame.Navigate(typeof(Pages.Category),category); break;
             }
@@ -76,6 +79,7 @@ namespace GroupHomework
                 foreach (Models.Category c in categories.data)
                 {
                     Menu.Items.Add(new MenuItem() { Name = c.name, MenuPage = "category", Icon = c.icon, Category = c });
+
                 }
             }
         }
